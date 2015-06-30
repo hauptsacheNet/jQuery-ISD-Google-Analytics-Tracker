@@ -90,7 +90,7 @@
 				.not(hostSelector)
 				.each(function() {
 					$(this).click(function() {
-						_gaq.push(['_link', this.href]);
+						//_gaq.push(['_link', this.href]);
 						return false;
 					});
 				});
@@ -118,11 +118,11 @@
 			$(this).on('click', function() {
 				var thisHref = this.href;
 				
-				_gaq.push([trackEvent, category, clk, thisHref]);
-				
+                ga('send', 'event', category, clk, thisHref);
+
 				if (settings.trackAlternatePropertyIDs && altIDs.length > 0) {
 					for (var i = 0; i < altIDs.length; i++) {
-						_gaq.push(['' + altIDs[i] + '.' + trackEvent, category, clk, thisHref]);
+                        //_gaq.push(['' + altIDs[i] + '.' + trackEvent, category, clk, thisHref]);
 					}
 				}
 				
@@ -156,14 +156,14 @@
 		$internalLinks.each(function() {
 			$(this).on('click', function() {
 				var thisHref = this.href;
-				
-				_gaq.push([trackPageview, thisHref]);
-				
-				if (settings.trackAlternatePropertyIDs && altIDs.length > 0) {
-					for (var i = 0; i < altIDs.length; i++) {
-						_gaq.push(['' + altIDs[i] + '.' + trackPageview, thisHref]);
-					}
-				}
+
+                ga('send', 'pageview', thisHref);
+
+				//if (settings.trackAlternatePropertyIDs && altIDs.length > 0) {
+				//	for (var i = 0; i < altIDs.length; i++) {
+				//		_gaq.push(['' + altIDs[i] + '.' + trackPageview, thisHref]);
+				//	}
+				//}
 				
 				if (delay > 0) {
 					setTimeout(function() {
